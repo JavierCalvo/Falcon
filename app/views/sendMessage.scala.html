@@ -1,0 +1,10 @@
+var d = { 'name': "John Portella" };
+$.ajax({
+    type :  "POST",
+    dataType: 'json',
+    data: JSON.stringify(d),
+    url  :  "@routes.Application.addMessage()",
+        success: function(data){
+            console.log(data);
+        }
+});
