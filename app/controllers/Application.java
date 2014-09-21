@@ -19,39 +19,30 @@ public class Application extends Controller {
         return ok(index.render());
     }
     
+    //Json received at the Endpoint
     @BodyParser.Of(BodyParser.Json.class)
     public static Result addMessage() {
       JsonNode json = request().body().asJson();
       String message = json.findPath("message").textValue();
+      //pass the message to the server
       Server.newMessage(message);
-      if(message == null) {
-        return badRequest("Missing parameter [message]");
-      } else {
-        return ok("Message > " + message);
-      }
-      
+      return ok();
     }
     
     //returns a json with all messages
     public static Result getMessages(){
-      Server.getMessages();
-      //return ok(Server.getMessages());
-      return ok(index.render());
-
+      return ok((Server.getMessages()).toString());
     }
     
     public static Result messagesRoom() {
       return ok(timeline.render());
     }
-    
-    /**
-  * Handle the chat websocket.
-  */
+
     public static WebSocket<JsonNode> view() {
       return new WebSocket<JsonNode>() {
         // Called when the Websocket Handshake is done.
         public void onReady(WebSocket.In<JsonNode> in, WebSocket.Out<JsonNode> out){
-          // Join the chat room.
+          // Join the server.
           try {
             Server.join(in, out);
           } catch (Exception ex) {
