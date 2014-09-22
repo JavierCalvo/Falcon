@@ -1,10 +1,41 @@
-var d = { 'message': "hello world" };
-$.ajax({
-    type :  "POST",
-    dataType: 'json',
-    data: JSON.stringify(d),
-    url  :  "@routes.Application.addMessage()",
-        success: function(data){
-            console.log(data);
-        }
-});
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<script src="https://code.jquery.com/jquery-1.9.1.js" type='text/javascript'>
+			/* Adding a handler to the submit event */
+			$("#form1").submit(function(event) {
+
+				var d = { "message" : $('#message').val()};
+
+					$.ajax({
+						//url: "http://localhost:9000/sendMessage",
+						type :  "POST",
+						url: "http://localhost:9000/sendMessage",
+					    contentType: "application/json, charset=UTF-8",
+					    dataType: "json",
+					    data: JSON.stringify(d),
+					        success: function(data){
+					            console.log(data);
+					        }
+					});
+			});
+			
+		</script>
+	</head>
+
+	<body>
+		<form id="form1" title="" method="post">
+			<div>
+				<label class="title">Enter your Message</label>
+				<input type="text" id="message" name="message" >
+			</div>
+
+			<div>
+				<input type="submit" id="submitButton"  name="submitButton" value="Send">
+			</div>
+		</form>
+	</body>
+
+</html>

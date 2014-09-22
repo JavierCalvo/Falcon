@@ -8,8 +8,6 @@ import play.mvc.BodyParser;
 import views.html.*;
 import models.Server;
 
-import models.ChatRoom;
-
 import scala.App;
 import play.libs.Json;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -39,6 +37,10 @@ public class Application extends Controller {
     
     public static Result messagesRoom() {
       return ok(timeline.render());
+    }
+
+    public static Result sendMessage() {
+      return ok(sendMessage.render());
     }
 
     public static WebSocket<JsonNode> view() {
