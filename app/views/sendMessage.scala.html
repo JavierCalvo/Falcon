@@ -1,41 +1,39 @@
 <!DOCTYPE html>
-
+ 
 <html>
-
+ 
 	<head>
-		<script src="https://code.jquery.com/jquery-1.9.1.js" type='text/javascript'>
+		<script src="https://code.jquery.com/jquery-1.9.1.js" type='text/javascript'></script>
+		<script>
 			/* Adding a handler to the submit event */
-			$("#form1").submit(function(event) {
-
-				var d = { "message" : $('#message').val()};
-
+			$(document).ready(function () { 
+				$("#submitButton").click(function(e) {
+	 
+					var d = { "message" : $('#message').val()};
 					$.ajax({
-						//url: "http://localhost:9000/sendMessage",
-						type :  "POST",
-						url: "http://localhost:9000/sendMessage",
-					    contentType: "application/json, charset=UTF-8",
-					    dataType: "json",
-					    data: JSON.stringify(d),
-					        success: function(data){
-					            console.log(data);
-					        }
+						url: "http://ec2-54-229-183-174.eu-west-1.compute.amazonaws.com:9000/sendMessage",
+						type : "POST",
+						contentType: "application/json, charset=UTF-8",
+						dataType: "json",
+						data: JSON.stringify(d),
+						success: function(data){
+							console.log(data);
+						}
 					});
+				});
 			});
-			
 		</script>
 	</head>
-
+ 
 	<body>
-		<form id="form1" title="" method="post">
-			<div>
-				<label class="title">Enter your Message</label>
-				<input type="text" id="message" name="message" >
-			</div>
-
-			<div>
-				<input type="submit" id="submitButton"  name="submitButton" value="Send">
-			</div>
-		</form>
+		<div>
+			<label class="title">Enter your Message</label>
+			<input type="text" id="message" name="message" >
+		</div>
+		 
+		<div>
+		<input type="button" id="submitButton" name="submitButton" value="Send">
+		</div>
 	</body>
-
+	 
 </html>
