@@ -11,6 +11,9 @@ import models.Server;
 import models.ChatRoom;
 
 import scala.App;
+import play.libs.Json;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 
 public class Application extends Controller {
@@ -31,7 +34,7 @@ public class Application extends Controller {
     
     //returns a json with all messages
     public static Result getMessages(){
-      return ok((Server.getMessages()).toString());
+      return ok(Server.getMessages());
     }
     
     public static Result messagesRoom() {

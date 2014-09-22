@@ -33,7 +33,9 @@ import com.typesafe.plugin.RedisPlugin;
 public class Server extends UntypedActor {
 
     static ActorRef messageViewer = Akka.system().actorOf(Props.create(Server.class));
+
     private static final String CHANNEL = "messages";
+    private static final String LOG = "logger";
 
     static{
 
@@ -43,7 +45,7 @@ public class Server extends UntypedActor {
 			new Runnable() {
 				public void run() {
 					Jedis j = play.Play.application().plugin(RedisPlugin.class).jedisPool().getResource();
-					j.subscribe(new JedisListener(), CHANNEL);
+					j.subscribe(new JedisListener(), Server.CHANNEL);
 				}
 			},
 			Akka.system().dispatcher()
@@ -134,6 +136,9 @@ public class Server extends UntypedActor {
         public Join(WebSocket.Out<JsonNode> channel) {
             this.channel = channel;
         }
+        public String getType() {
+			return "join";
+		}
     }
 
     public static class Talk {
@@ -143,6 +148,12 @@ public class Server extends UntypedActor {
         public Talk(String text) {
             this.text = text;
         }
+        public String getType() {
+			return "talk";
+		}
+		public String getText() {
+			return text;
+		}
     }
     public static class Quit {
 
@@ -151,18 +162,24 @@ public class Server extends UntypedActor {
         public Quit(WebSocket.Out<JsonNode> channel) {
             this.channel = channel;
         }
+
+        public String getType() {
+			return "quit";
+		}
     }
 
     //New message Rest EndPoint
 	public static void newMessage(String message){
 
 		Talk talk = new Talk(message);
-        notifyAll(talk.text);
+        //notifyAll(talk.text);
 
         Jedis j = play.Play.application().plugin(RedisPlugin.class).jedisPool().getResource();
 		try {
 			//All messages are pushed through the pub/sub channel
 			j.publish(Server.CHANNEL, Json.stringify(Json.toJson(talk)));
+			//and stored 
+			j.sadd(Server.LOG, talk.text);
 		} finally {
 			play.Play.application().plugin(RedisPlugin.class).jedisPool().returnResource(j);
 		}
@@ -171,21 +188,26 @@ public class Server extends UntypedActor {
 		return;
 	}
 
-	//Give the list of messages stored in the PubSub channel
-	public static ArrayNode getMessages(){
+	//Return the list of messages 
+	public static ObjectNode getMessages(){
+		ObjectNode log = Json.newObject();
 		ArrayNode messagesList = JsonNodeFactory.instance.arrayNode(); 
+		int i=0;
 
 		Jedis j = play.Play.application().plugin(RedisPlugin.class).jedisPool().getResource();
 		try {
-			for(String m: j.smembers(Server.CHANNEL)){
-				ObjectNode message = Json.newObject(); 
-        		message.put("message", m); 
-        		messagesList.add(message);
+			//get the log of the messages
+			for(String m: j.smembers(Server.LOG)) {
+				ObjectNode message = Json.newObject();
+				message.put("message", m);
+				messagesList.add(message);
 			}
+			
 		} finally {
 			play.Play.application().plugin(RedisPlugin.class).jedisPool().returnResource(j);
 		}
-		return messagesList;
+		log.put("log", messagesList);
+		return log;
 	}
 
 	public static void remoteMessage(Object message) {
@@ -198,7 +220,12 @@ public class Server extends UntypedActor {
 		public void onMessage(String channel, String messageBody) {
 			JsonNode parsedMessage = Json.parse(messageBody);
 			Object message = null;
-			message = new Talk(parsedMessage.get("text").asText());
+			String messageType = parsedMessage.get("type").asText();
+
+			if("talk".equals(messageType)) {
+				message = new Talk(parsedMessage.get("text").asText());
+			}
+
 			Server.remoteMessage(message);
 
 		}
