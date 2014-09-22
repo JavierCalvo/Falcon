@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="test"
+		module="test_1.2.2"
+		revision="1.0-SNAPSHOT"
+		conf="echo-trace-test"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool, echo-trace-compile, echo-trace-test, echo-weave, echo-sigar"
+		date="20140919082325"/>
+	<dependencies>
+		<module organisation="com.typesafe.play" name="play-test_1.2.2">
+			<revision name="2.3.4" error="not found" downloaded="false" searched="false" conf="default(compile)" position="-1">
+				<caller organisation="test" name="test_1.2.2" conf="test-internal, test, echo-trace-compile, optional, compile, provided, runtime, echo-trace-test, runtime-internal" rev="2.3.4" rev-constraint-default="2.3.4" rev-constraint-dynamic="2.3.4" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play.plugins" name="play-plugins-redis_1.2.2">
+			<revision name="2.3" error="not found" downloaded="false" searched="false" conf="default(compile)" position="-1">
+				<caller organisation="test" name="test_1.2.2" conf="test-internal, test, echo-trace-compile, optional, compile, provided, runtime, echo-trace-test, runtime-internal" rev="2.3" rev-constraint-default="2.3" rev-constraint-dynamic="2.3" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="play-java-ws_1.2.2">
+			<revision name="2.3.4" error="not found" downloaded="false" searched="false" conf="default(compile)" position="-1">
+				<caller organisation="test" name="test_1.2.2" conf="test-internal, test, echo-trace-compile, optional, compile, provided, runtime, echo-trace-test, runtime-internal" rev="2.3.4" rev-constraint-default="2.3.4" rev-constraint-dynamic="2.3.4" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="play-cache_1.2.2">
+			<revision name="2.3.4" error="not found" downloaded="false" searched="false" conf="default(compile)" position="-1">
+				<caller organisation="test" name="test_1.2.2" conf="test-internal, test, echo-trace-compile, optional, compile, provided, runtime, echo-trace-test, runtime-internal" rev="2.3.4" rev-constraint-default="2.3.4" rev-constraint-dynamic="2.3.4" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="play-java-ebean_1.2.2">
+			<revision name="2.3.4" error="not found" downloaded="false" searched="false" conf="default(compile)" position="-1">
+				<caller organisation="test" name="test_1.2.2" conf="test-internal, test, echo-trace-compile, optional, compile, provided, runtime, echo-trace-test, runtime-internal" rev="2.3.4" rev-constraint-default="2.3.4" rev-constraint-dynamic="2.3.4" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="play-java-jdbc_1.2.2">
+			<revision name="2.3.4" error="not found" downloaded="false" searched="false" conf="default(compile)" position="-1">
+				<caller organisation="test" name="test_1.2.2" conf="test-internal, test, echo-trace-compile, optional, compile, provided, runtime, echo-trace-test, runtime-internal" rev="2.3.4" rev-constraint-default="2.3.4" rev-constraint-dynamic="2.3.4" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="play-java_1.2.2">
+			<revision name="2.3.4" error="not found" downloaded="false" searched="false" conf="default(compile)" position="-1">
+				<caller organisation="test" name="test_1.2.2" conf="test-internal, test, echo-trace-compile, optional, compile, provided, runtime, echo-trace-test, runtime-internal" rev="2.3.4" rev-constraint-default="2.3.4" rev-constraint-dynamic="2.3.4" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="play_1.2.2">
+			<revision name="2.3.4" error="not found" downloaded="false" searched="false" conf="default(compile)" position="-1">
+				<caller organisation="test" name="test_1.2.2" conf="test-internal, test, echo-trace-compile, optional, compile, provided, runtime, echo-trace-test, runtime-internal" rev="2.3.4" rev-constraint-default="2.3.4" rev-constraint-dynamic="2.3.4" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="twirl-api_1.2.2">
+			<revision name="1.0.2" error="not found" downloaded="false" searched="false" conf="default(compile)" position="-1">
+				<caller organisation="test" name="test_1.2.2" conf="test-internal, test, echo-trace-compile, optional, compile, provided, runtime, echo-trace-test, runtime-internal" rev="1.0.2" rev-constraint-default="1.0.2" rev-constraint-dynamic="1.0.2" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="1.2.2" error="not found" downloaded="false" searched="false" conf="default(compile)" position="-1">
+				<caller organisation="test" name="test_1.2.2" conf="test-internal, test, echo-trace-compile, optional, compile, provided, runtime, echo-trace-test, runtime-internal" rev="1.2.2" rev-constraint-default="1.2.2" rev-constraint-dynamic="1.2.2" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

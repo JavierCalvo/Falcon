@@ -1,0 +1,4 @@
+[0m[[0mdebug[0m] [0mCopy resource mappings: [0m
+[0m[[0mdebug[0m] [0m	(/Users/javiercalvo/Falcon/activator-1.2.10/Test/conf/application.conf,/Users/javiercalvo/Falcon/activator-1.2.10/Test/target/scala-2.11/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/Users/javiercalvo/Falcon/activator-1.2.10/Test/conf/play.plugins,/Users/javiercalvo/Falcon/activator-1.2.10/Test/target/scala-2.11/classes/play.plugins)[0m
+[0m[[0mdebug[0m] [0m	(/Users/javiercalvo/Falcon/activator-1.2.10/Test/conf/routes,/Users/javiercalvo/Falcon/activator-1.2.10/Test/target/scala-2.11/classes/routes)[0m
